@@ -1,8 +1,13 @@
-import { DataTypes } from "sequelize";
+import { type Model, DataTypes } from "sequelize";
+import type { ProductAttributes, ProductCreationAttributes } from "../types";
 // import { Table, Column, Model, DataType } from "sequelize-typescript";
 import connection from "../db/db";
 
-const Product = connection.define("product", {
+interface ProductInstance
+  extends Model<ProductAttributes, ProductCreationAttributes>,
+    ProductAttributes {}
+
+const Product = connection.define<ProductInstance>("product", {
   id: {
     primaryKey: true,
     type: DataTypes.UUID,
