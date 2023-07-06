@@ -1,34 +1,35 @@
-import { type Model, DataTypes } from "sequelize";
-import type { ProductAttributes, ProductCreationAttributes } from "../types";
-// import { Table, Column, Model, DataType } from "sequelize-typescript";
+import { DataTypes } from "sequelize";
+import { Product } from "../types";
 import connection from "../db/db";
 
-interface ProductInstance
-  extends Model<ProductAttributes, ProductCreationAttributes>,
-    ProductAttributes {}
+// const sequelize = connection;
 
-const Product = connection.define<ProductInstance>("product", {
-  id: {
-    primaryKey: true,
-    type: DataTypes.UUID,
-    allowNull: false
+Product.init(
+  {
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    },
+    name: {
+      type: DataTypes.STRING(128),
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.NUMBER,
+      allowNull: false
+    },
+    categoryId: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },
-  name: {
-    type: DataTypes.STRING(150),
-    allowNull: false
-  },
-  description: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  price: {
-    type: DataTypes.NUMBER,
-    allowNull: false
-  },
-  categoryId: {
-    type: DataTypes.UUID,
-    allowNull: false
+  {
+    sequelize: connection
   }
-});
+);
 
 export default Product;
