@@ -1,35 +1,28 @@
-import { DataTypes } from "sequelize";
-import { Product } from "../types";
-import connection from "../db/db";
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  AllowNull,
+  PrimaryKey
+} from "sequelize-typescript";
 
-// const sequelize = connection;
+@Table
+export class Product extends Model {
+  @Column
+  @AllowNull(false)
+  @PrimaryKey
+  id!: string;
 
-Product.init(
-  {
-    id: {
-      type: DataTypes.STRING,
-      primaryKey: true
-    },
-    name: {
-      type: DataTypes.STRING(128),
-      allowNull: false
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    price: {
-      type: DataTypes.NUMBER,
-      allowNull: false
-    },
-    categoryId: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
-  },
-  {
-    sequelize: connection
-  }
-);
+  @Column
+  @AllowNull(false)
+  name!: string;
 
-export default Product;
+  @Column(DataType.TEXT)
+  @AllowNull(false)
+  description!: string;
+
+  @Column
+  @AllowNull(false)
+  price!: number;
+}
