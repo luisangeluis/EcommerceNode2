@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
 import dotenv from "dotenv";
 import type { Dialect } from "sequelize";
-import { Product } from "../models/product.model";
+import Product from "../models/product.model";
 
 dotenv.config();
 
@@ -12,10 +12,10 @@ const password = process.env.DB_PASSWORD;
 const database = process.env.DB_NAME as string;
 // const port = process.env.DB_PORT;
 
-const sequelize = new Sequelize(database, username, password, {
+const db = new Sequelize(database, username, password, {
   dialect,
   host,
   models: [Product]
 });
 
-export default sequelize;
+export default db;

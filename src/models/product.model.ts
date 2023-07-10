@@ -3,26 +3,29 @@ import {
   Column,
   Model,
   DataType,
-  AllowNull,
   PrimaryKey
 } from "sequelize-typescript";
 
 @Table
-export class Product extends Model {
-  @Column
-  @AllowNull(false)
+class Product extends Model<Product> {
   @PrimaryKey
+  @Column({
+    type: DataType.STRING,
+    allowNull: false
+  })
   id!: string;
 
-  @Column
-  @AllowNull(false)
+  @Column({ allowNull: false })
   name!: string;
 
-  @Column(DataType.TEXT)
-  @AllowNull(false)
+  @Column({
+    type: DataType.STRING,
+    allowNull: false
+  })
   description!: string;
 
-  @Column
-  @AllowNull(false)
+  @Column({ allowNull: false })
   price!: number;
 }
+
+export default Product;
