@@ -5,6 +5,8 @@ import db from "./db/db";
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
 db.authenticate()
   .then((_res) => {
     console.log("database autenticate");

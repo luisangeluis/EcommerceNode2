@@ -5,9 +5,10 @@ import {
   DataType,
   PrimaryKey
 } from "sequelize-typescript";
+import type { ProductAttributes, ProductCreationAttributes } from "../types";
 
 @Table
-class Product extends Model<Product> {
+class Product extends Model<ProductAttributes, ProductCreationAttributes> {
   @PrimaryKey
   @Column({
     type: DataType.STRING,
