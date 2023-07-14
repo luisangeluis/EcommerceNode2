@@ -8,19 +8,26 @@ app.use(express.json());
 
 db.authenticate()
   .then((_res) => {
-    console.log("database autenticate");
+    // console.log("database autenticate");
   })
   .catch((error) => {
     console.log(error);
   });
 
-db.sync()
-  .then((_res) => {
-    console.log("Db synced");
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// if (process.env.NODE_ENV === "production") {
+//   db.sync()
+//     .then(() => {
+//       console.log("database synced");
+//     })
+//     .catch((error) => console.log(error));
+// } else {
+  db.sync()
+    .then(() => {
+      // console.log("database synced");
+
+    })
+    .catch((error) => console.log(error));
+// }
 
 app.use("/api/v1/products", productsRoutes);
 // app.use("/route", (_req, res) => {
